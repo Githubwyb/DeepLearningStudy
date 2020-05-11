@@ -17,7 +17,7 @@ class Perceptron(object):
         '''
         打印学习到的权重、偏置项
         '''
-        return 'weights\t:%s\nbias\t:%f\n' % (self.weights, self.bias)
+        return 'weights\t: %s\nbias\t: %f\n' % (self.weights, self.bias)
 
     def predict(self, input_vec):
         '''
@@ -60,9 +60,9 @@ class Perceptron(object):
         # 变成[(x1,w1),(x2,w2),(x3,w3),...]
         # 然后利用感知器规则更新权重
         delta = label - output
-        self.weights = map(
+        self.weights = list(map(
             lambda x, w: w + rate * delta * x,
-            zip(input_vec, self.weights))
+            input_vec, self.weights))
         # 更新bias
         self.bias += rate * delta
 
@@ -71,6 +71,7 @@ def f(x):
     定义激活函数f
     '''
     return 1 if x > 0 else 0
+    
 def get_training_dataset():
     '''
     基于and真值表构建训练数据
@@ -82,6 +83,7 @@ def get_training_dataset():
     # [1,1] -> 1, [0,0] -> 0, [1,0] -> 0, [0,1] -> 0
     labels = [1, 0, 0, 0]
     return input_vecs, labels
+
 def train_and_perceptron():
     '''
     使用and真值表训练感知器
@@ -93,6 +95,7 @@ def train_and_perceptron():
     p.train(input_vecs, labels, 10, 0.1)
     #返回训练好的感知器
     return p
+
 if __name__ == '__main__':
     # 训练and感知器
     and_perception = train_and_perceptron()
