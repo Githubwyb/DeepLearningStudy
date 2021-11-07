@@ -1,3 +1,4 @@
+# coding=utf-8
 
 from functools import reduce
 
@@ -71,7 +72,7 @@ def f(x):
     定义激活函数f
     '''
     return 1 if x > 0 else 0
-    
+
 def get_training_dataset():
     '''
     基于and真值表构建训练数据
